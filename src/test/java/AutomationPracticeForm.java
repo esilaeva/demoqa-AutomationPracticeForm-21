@@ -14,11 +14,15 @@ public class AutomationPracticeForm {
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
+
     }
 
     @Test
     void fillFormTest() {
         open("/automation-practice-form");
+
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
 
         $("#firstName").setValue("Ilana");
         $("#lastName").setValue("Qa");
