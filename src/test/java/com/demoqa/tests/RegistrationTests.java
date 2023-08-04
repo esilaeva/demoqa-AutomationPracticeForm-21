@@ -1,26 +1,16 @@
-package com.demoqa;
+package com.demoqa.tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class AutomationPracticeForm {
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy = "eager";
-
-    }
+public class RegistrationTests extends TestBase {
 
     @Test
     void fillFormTest() {
         open("/automation-practice-form");
-
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
 
@@ -52,8 +42,6 @@ public class AutomationPracticeForm {
         //submit form
         $("#submit").click();
 
-
-        //
         $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Ilana Qa"));
         $(".table-responsive").$(byText("Student Email")).parent().shouldHave(text("ilana.qa@proton.me"));
         $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Female"));
