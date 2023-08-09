@@ -1,4 +1,4 @@
-package tests;
+package com.demoqa.tests;
 
 import org.junit.jupiter.api.Test;
 
@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class AutomationPracticeFormTests extends TestBase {
+public class RegistrationTests extends TestBase {
 
     @Test
     void fillFormTest() {
@@ -30,7 +30,7 @@ public class AutomationPracticeFormTests extends TestBase {
 
         $("#subjectsInput").setValue("English").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
-        $("#uploadPicture").uploadFromClasspath("img/pic.png");
+        $("#uploadPicture").uploadFromClasspath("pic.png");
         $("[placeholder='Current Address']").setValue("Red Square 1");
 
         //state and city
