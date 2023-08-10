@@ -3,26 +3,30 @@ package com.demoqa.utils;
 import com.github.javafaker.Faker;
 
 import java.security.SecureRandom;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomUtils {
 
     public static final String SPACE = " ";
 
-    enum Month {
-        Jan("January"), Feb("February"), Mar("March"), Apr("April"),
-        May("May"), Jun("June"), Jul("July"), Aug("August"),
-        Sep("September"), Oct("October"), Nov("November"), Dec("December");
+    private static final Map<String, String> monthMap = new HashMap<>();
 
-        private final String fullName;
-
-        Month(String fullName) {
-            this.fullName = fullName;
-        }
-        public String getFullName() {
-            return fullName;
-        }
+    static {
+        monthMap.put("Jan", "January");
+        monthMap.put("Feb", "February");
+        monthMap.put("Mar", "March");
+        monthMap.put("Apr", "April");
+        monthMap.put("May", "May");
+        monthMap.put("Jun", "June");
+        monthMap.put("Jul", "July");
+        monthMap.put("Aug", "August");
+        monthMap.put("Sep", "September");
+        monthMap.put("Oct", "October");
+        monthMap.put("Nov", "November");
+        monthMap.put("Dec", "December");
     }
 
     public static void main(String[] args) {
@@ -82,15 +86,13 @@ public class RandomUtils {
     }
 
     public static String getRandomMonth(String date) {
-        String[] arr = date.split(SPACE);
 
-        return Month.valueOf(arr[1]).getFullName();
+        return monthMap.get(date.split(SPACE)[1]);
     }
 
     public static String getRandomYear(String date) {
-        String[] arr = date.split(SPACE);
 
-        return arr[5];
+        return date.split(SPACE)[5];
     }
 
     public static String getRandomDate(int minAge, int maxAge) {
@@ -98,16 +100,16 @@ public class RandomUtils {
     }
 
     public static String getRandomSubject() {
-        String[] arr = {"English", "Chemistry", "Computer Science"
+        String[] subject = {"English", "Chemistry", "Computer Science"
                 , "Commerce", "Economics", "Social Studies"};
 
-        return getRandomItemFromArray(arr);
+        return getRandomItemFromArray(subject);
     }
 
     public static String getRandomHobbies() {
-        String[] arr = {"Sports", "Reading", "Music"};
+        String[] hobby = {"Sports", "Reading", "Music"};
 
-        return getRandomItemFromArray(arr);
+        return getRandomItemFromArray(hobby);
     }
 
     public static String getRandomAddress() {
@@ -115,28 +117,29 @@ public class RandomUtils {
     }
 
     public static String getRandomState() {
-        String[] arr = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
+        String[] state = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
 
-        return getRandomItemFromArray(arr);
+        return getRandomItemFromArray(state);
     }
 
     public static String getRandomCity(String state) {
+
         if (state.equals("NCR")) {
-            String[] arr = {"Delhi", "Gurgaon", "Noida"};
+            String[] cityNCR = {"Delhi", "Gurgaon", "Noida"};
 
-            return new Faker().options().option(arr);
+            return new Faker().options().option(cityNCR);
         } else if (state.equals("Uttar Pradesh")) {
-            String[] arr = {"Agra", "Lucknow", "Merrut"};
+            String[] cityUP = {"Agra", "Lucknow", "Merrut"};
 
-            return new Faker().options().option(arr);
+            return new Faker().options().option(cityUP);
         } else if (state.equals("Haryana")) {
-            String[] arr = {"Karnal", "Panipat"};
+            String[] cityH = {"Karnal", "Panipat"};
 
-            return new Faker().options().option(arr);
+            return new Faker().options().option(cityH);
         } else {
-            String[] arr = {"Jaipur", "Jaiselmer"};
+            String[] cityR = {"Jaipur", "Jaiselmer"};
 
-            return new Faker().options().option(arr);
+            return new Faker().options().option(cityR);
         }
 
     }
