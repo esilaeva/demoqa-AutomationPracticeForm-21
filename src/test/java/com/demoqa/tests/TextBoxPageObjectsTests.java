@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 
 public class TextBoxPageObjectsTests extends TestBase {
 
-    TextBoxPage textBox = new TextBoxPage();
+    TextBoxPage textBoxPage = new TextBoxPage();
 
     @Test
     void fillFormTest() {
-        textBox
+        textBoxPage
                 .openPage()
                 .setUserName("Ilana Qa")
                 .setUserEmail("ilana.qa@proton.me")
@@ -17,7 +17,7 @@ public class TextBoxPageObjectsTests extends TestBase {
                 .setPermanentAddress("Another address")
                 .clickSubmit();
 
-        textBox
+        textBoxPage
                 .checkResultName("Ilana Qa")
                 .checkResultEmail("ilana.qa@proton.me")
                 .checkResultCurrentAddress("Red Square 1")

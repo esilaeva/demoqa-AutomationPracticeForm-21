@@ -3,38 +3,18 @@ package com.demoqa.utils;
 import com.github.javafaker.Faker;
 
 import java.security.SecureRandom;
-import java.util.HashMap;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
-import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomUtils {
-
-    public static final String SPACE = " ";
-
-    private static final Map<String, String> monthMap = new HashMap<>();
-
-    static {
-        monthMap.put("Jan", "January");
-        monthMap.put("Feb", "February");
-        monthMap.put("Mar", "March");
-        monthMap.put("Apr", "April");
-        monthMap.put("May", "May");
-        monthMap.put("Jun", "June");
-        monthMap.put("Jul", "July");
-        monthMap.put("Aug", "August");
-        monthMap.put("Sep", "September");
-        monthMap.put("Oct", "October");
-        monthMap.put("Nov", "November");
-        monthMap.put("Dec", "December");
-    }
 
     public static void main(String[] args) {
 
     }
 
     public static String getRandomString(int len) {
-        //String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         String AB = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         SecureRandom rnd = new SecureRandom();
         StringBuilder sb = new StringBuilder();
@@ -45,21 +25,24 @@ public class RandomUtils {
     }
 
     public static String getRandomFirstName() {
+
         return new Faker(Locale.ENGLISH).name().firstName();
     }
 
     public static String getRandomLastName() {
+
         return new Faker(Locale.ENGLISH).name().lastName();
     }
 
     public static String getRandomEmail() {
-        return String.format("%s@%s.%s", getRandomString(10), getRandomString(5), getRandomString(3));
+
+        return new Faker().internet().emailAddress();
     }
 
     public static String getRandomGender() {
         String[] genders = {"Male", "Female", "Other"};
 
-        return getRandomItemFromArray(genders);
+        return new Faker().options().option(genders);
     }
 
     public static String getRandomItemFromArray(String[] arr) {
@@ -69,47 +52,34 @@ public class RandomUtils {
     }
 
     public static int getRandomInt(int min, int max) {
+
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 
     public static String getRandomPhone() {
-//        return String.format("+%s (%s) %s - %s - %s", getRandomInt(1, 9), getRandomInt(111, 999),
-//                getRandomInt(111, 999), getRandomInt(11, 99), getRandomInt(11, 99));
-        return String.format("%s%s%s%s", getRandomInt(111, 999), getRandomInt(111, 999),
-                getRandomInt(11, 99), getRandomInt(11, 99));
+
+        return new Faker().phoneNumber().subscriberNumber(10);
     }
 
-    public static String getRandomDay(String date) {
-        String[] arr = date.split(SPACE);
+    public static String[] getRandomDate(int minAge, int maxAge) {
+        Faker faker = new Faker();
+        Date date = faker.date().birthday(minAge, maxAge);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
+        String[] dateArray = dateFormat.format(date).toString().split("-");
 
-        return arr[2];
-    }
-
-    public static String getRandomMonth(String date) {
-
-        return monthMap.get(date.split(SPACE)[1]);
-    }
-
-    public static String getRandomYear(String date) {
-
-        return date.split(SPACE)[5];
-    }
-
-    public static String getRandomDate(int minAge, int maxAge) {
-        return new Faker().date().birthday(minAge, maxAge).toString();
+        return dateArray;
     }
 
     public static String getRandomSubject() {
-        String[] subject = {"English", "Chemistry", "Computer Science"
-                , "Commerce", "Economics", "Social Studies"};
+        String[] subject = {"English", "Chemistry", "Computer Science", "Commerce", "Economics", "Social Studies"};
 
-        return getRandomItemFromArray(subject);
+        return new Faker().options().option(subject);
     }
 
     public static String getRandomHobbies() {
         String[] hobby = {"Sports", "Reading", "Music"};
 
-        return getRandomItemFromArray(hobby);
+        return new Faker().options().option(hobby);
     }
 
     public static String getRandomAddress() {
@@ -119,7 +89,7 @@ public class RandomUtils {
     public static String getRandomState() {
         String[] state = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
 
-        return getRandomItemFromArray(state);
+        return new Faker().options().option(state);
     }
 
     public static String getRandomCity(String state) {
@@ -141,8 +111,5 @@ public class RandomUtils {
 
             return new Faker().options().option(cityR);
         }
-
     }
-
-
 }

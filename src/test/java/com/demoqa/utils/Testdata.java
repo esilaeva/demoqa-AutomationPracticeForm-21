@@ -1,4 +1,4 @@
-package com.demoqa.utils.testdata;
+package com.demoqa.utils;
 
 import static com.demoqa.utils.RandomUtils.*;
 
@@ -7,17 +7,14 @@ public class Testdata {
             firstName = getRandomFirstName(),
             lastName = getRandomLastName(),
             userEmail = getRandomEmail(),
-            gender = getRandomGender(),
+            userGender = getRandomGender(),
             userNumber = getRandomPhone(),
-            date = getRandomDate(18, 99),
-            year = getRandomYear(date),
-            month = getRandomMonth(date),
-            day = getRandomDay(date),
-            birthday = day + " " + month + "," + year,
             subject = getRandomSubject(),
             hobby = getRandomHobbies(),
             fileName = "pic.png",
             streetAddress = getRandomAddress(),
             state = getRandomState(),
             city = getRandomCity(state);
+
+    public static String[] birthday = getRandomDate(14, 99);
 }
