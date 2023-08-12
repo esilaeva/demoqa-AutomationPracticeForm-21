@@ -5,6 +5,7 @@ import static com.demoqa.utils.RandomUtils.*;
 public class Testdata {
 
     public static String[] birthdayDate = getRandomDate(14, 99);
+
     public static String
             firstName = getRandomFirstName(),
             lastName = getRandomLastName(),
