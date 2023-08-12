@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static com.demoqa.utils.Testdata.*;
 
 public class RegistrationPageObjectsWithFakerTests extends TestBase {
+
     RegistrationPage registrationPage = new RegistrationPage();
     TableResultComponent tableResultComponent = new TableResultComponent();
 
@@ -17,24 +18,24 @@ public class RegistrationPageObjectsWithFakerTests extends TestBase {
                 .openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
-                .setUserEmail(userEmail)
+                .setEmail(userEmail)
                 .setGender(userGender)
-                .setUserNumber(userNumber)
-                .setBirthDate(birthday[0], birthday[1], birthday[2])
+                .setMobileNumber(userNumber)
+                .setBirthDate(birthDay, birthdayMonth, birthdayYear)
                 .setSubject(subject)
-                .setHobbie(hobby)
+                .setHobby(hobby)
                 .uploadPicture(fileName)
                 .setAddress(streetAddress)
                 .setState(state)
                 .setCity(city)
-                .clickSubmit();
+                .clickSubmitButton();
 
         tableResultComponent
                 .checkResult(firstName + " " + lastName)
                 .checkResult(userEmail)
                 .checkResult(userGender)
                 .checkResult(userNumber)
-                .checkResult(birthday[0] + " " + birthday[1] + "," + birthday[2])
+                .checkResult(birthDay + " " + birthdayMonth + "," + birthdayYear)
                 .checkResult(subject)
                 .checkResult(hobby)
                 .checkResult(fileName)

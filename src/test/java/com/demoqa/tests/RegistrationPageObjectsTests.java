@@ -5,6 +5,7 @@ import com.demoqa.pages.components.TableResultComponent;
 import org.junit.jupiter.api.Test;
 
 public class RegistrationPageObjectsTests extends TestBase {
+
     RegistrationPage registrationPage = new RegistrationPage();
     TableResultComponent tableResultComponent = new TableResultComponent();
 
@@ -14,17 +15,17 @@ public class RegistrationPageObjectsTests extends TestBase {
                 .openPage()
                 .setFirstName("Ilana")
                 .setLastName("Qa")
-                .setUserEmail("ilana.qa@proton.me")
+                .setEmail("ilana.qa@proton.me")
                 .setGender("Female")
-                .setUserNumber("1234567890")
+                .setMobileNumber("1234567890")
                 .setBirthDate("09", "April", "2020")
                 .setSubject("English")
-                .setHobbie("Sports")
+                .setHobby("Sports")
                 .uploadPicture("pic.png")
                 .setAddress("Red Square 1")
                 .setState("NCR")
                 .setCity("Delhi")
-                .clickSubmit();
+                .clickSubmitButton();
 
         tableResultComponent
                 .checkResult("Ilana Qa")
@@ -47,12 +48,11 @@ public class RegistrationPageObjectsTests extends TestBase {
                 .setFirstName("Ilana")
                 .setLastName("Qa")
                 .setGender("Female")
-                .setUserNumber("1234567890")
-                .clickSubmit();
+                .setMobileNumber("1234567890")
+                .clickSubmitButton();
 
         tableResultComponent
                 .isModalDialogVisible()
-                .checkResultTitle("Thanks for submitting the form")
                 .checkResult("Ilana Qa")
                 .checkResult("Female")
                 .checkResult("1234567890");

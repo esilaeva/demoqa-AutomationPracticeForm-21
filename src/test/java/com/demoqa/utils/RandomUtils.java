@@ -10,10 +10,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomUtils {
 
-    public static void main(String[] args) {
-
-    }
-
     public static String getRandomString(int len) {
         String AB = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         SecureRandom rnd = new SecureRandom();
@@ -45,12 +41,6 @@ public class RandomUtils {
         return new Faker().options().option(genders);
     }
 
-    public static String getRandomItemFromArray(String[] arr) {
-        int index = getRandomInt(0, arr.length - 1);
-
-        return arr[index];
-    }
-
     public static int getRandomInt(int min, int max) {
 
         return ThreadLocalRandom.current().nextInt(min, max + 1);
@@ -65,9 +55,8 @@ public class RandomUtils {
         Faker faker = new Faker();
         Date date = faker.date().birthday(minAge, maxAge);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
-        String[] dateArray = dateFormat.format(date).toString().split("-");
 
-        return dateArray;
+        return dateFormat.format(date).split("-");
     }
 
     public static String getRandomSubject() {

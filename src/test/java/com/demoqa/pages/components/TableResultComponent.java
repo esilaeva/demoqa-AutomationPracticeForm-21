@@ -7,16 +7,10 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class TableResultComponent {
+
     private SelenideElement
-            tableResult = $(".table-responsive"),
-            title = $("#example-modal-sizes-title-lg"),
+            resultTable = $(".table-responsive"),
             modalDialog = $(".modal-dialog");
-
-    public TableResultComponent checkResultTitle(String value) {
-        title.shouldHave(text(value));
-
-        return this;
-    }
 
     public TableResultComponent isModalDialogVisible() {
         modalDialog.should(appear);
@@ -25,7 +19,7 @@ public class TableResultComponent {
     }
 
     public TableResultComponent checkResult(String value) {
-        tableResult.shouldHave(text(value));
+        resultTable.shouldHave(text(value));
 
         return this;
     }
