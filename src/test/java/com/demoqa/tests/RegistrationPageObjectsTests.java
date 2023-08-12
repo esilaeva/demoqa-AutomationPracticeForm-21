@@ -42,7 +42,6 @@ public class RegistrationPageObjectsTests extends TestBase {
 
     @Test
     void successRegistrationMinimalTest() {
-
         registrationPage
                 .openPage()
                 .setFirstName("Ilana")
