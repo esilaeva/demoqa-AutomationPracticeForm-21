@@ -8,29 +8,29 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
-    CalendarComponent calendar = new CalendarComponent();
+    CalendarComponent calendarComponent = new CalendarComponent();
 
-    SelenideElement
-            firstNameInput = $("#firstName"),
-            lastNameInput = $("#lastName"),
-            userEmailInput = $("#userEmail"),
-            genderWrapper = $("#genterWrapper"),
-            userNumberInput = $("#userNumber"),
-            birthDateInput = $("#dateOfBirthInput"),
-            subjectInput = $("#subjectsInput"),
-            hobbieInput = $("#hobbiesWrapper"),
-            uploadPicture = $("#uploadPicture"),
-            addressTextArea = $("[placeholder='Current Address']"),
+    private SelenideElement
+            userFirstName = $("#firstName"),
+            userLastName = $("#lastName"),
+            userEmail = $("#userEmail"),
+            userGender = $("#genterWrapper"),
+            userMobile = $("#userNumber"),
+            userBirthDate = $("#dateOfBirthInput"),
+            subject = $("#subjectsInput"),
+            hobby = $("#hobbiesWrapper"),
+            userPicture = $("#uploadPicture"),
+            userAddress = $("[placeholder='Current Address']"),
             state = $("#state"),
-            stateCityWrapper = $("#stateCity-wrapper"),
+            stateCity = $("#stateCity-wrapper"),
             city = $("#city"),
-            button = $("#submit");
+            submitButton = $("#submit"),
+            nameRegistrationForm = $(".practice-form-wrapper");
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
-        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        nameRegistrationForm.shouldHave(text("Student Registration Form"));
         deleteBanners();
-
         return this;
     }
 
@@ -40,83 +40,81 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setFirstName(String value) {
-        firstNameInput.setValue(value);
+        userFirstName.setValue(value);
 
         return this;
     }
 
     public RegistrationPage setLastName(String value) {
-        lastNameInput.setValue(value);
+        userLastName.setValue(value);
 
         return this;
     }
 
     public RegistrationPage setUserEmail(String value) {
-        userEmailInput.setValue(value);
+        userEmail.setValue(value);
 
         return this;
     }
 
     public RegistrationPage setGender(String value) {
-        genderWrapper.$(byText(value)).click();
+        userGender.$(byText(value)).click();
 
         return this;
     }
 
     public RegistrationPage setUserNumber(String value) {
-        userNumberInput.setValue(value);
+        userMobile.setValue(value);
 
         return this;
     }
 
     public RegistrationPage setBirthDate(String day, String month, String year) {
-        birthDateInput.click();
-        calendar.setDate(day, month, year);
+        userBirthDate.click();
+        calendarComponent.setDate(day, month, year);
 
         return this;
     }
 
     public RegistrationPage setSubject(String value) {
-        subjectInput.setValue(value).pressEnter();
+        subject.setValue(value).pressEnter();
 
         return this;
     }
 
     public RegistrationPage setHobbie(String value) {
-        hobbieInput.$(byText(value)).click();
+        hobby.$(byText(value)).click();
 
         return this;
     }
 
     public RegistrationPage uploadPicture(String value) {
-        uploadPicture.uploadFromClasspath(value);
+        userPicture.uploadFromClasspath(value);
 
         return this;
     }
 
     public RegistrationPage setAddress(String value) {
-        addressTextArea.setValue(value);
+        userAddress.setValue(value);
 
         return this;
     }
 
     public RegistrationPage setState(String value) {
         state.click();
-        stateCityWrapper.$(byText(value)).click();
+        stateCity.$(byText(value)).click();
 
         return this;
     }
 
     public RegistrationPage setCity(String value) {
         city.click();
-        stateCityWrapper.$(byText(value)).click();
+        stateCity.$(byText(value)).click();
 
         return this;
     }
 
     public void clickSubmit() {
-        button.click();
+        submitButton.click();
     }
-
-
 }

@@ -7,23 +7,27 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxPage {
 
-    SelenideElement
+    private SelenideElement
             userNameInput = $("#userName"),
             userEmailInput = $("#userEmail"),
-            currentAddressTextArea = $("#currentAddress"),
-            permanentAddressTextArea = $("#permanentAddress"),
+            currentAddressInput = $("#currentAddress"),
+            permanentAddressInput = $("#permanentAddress"),
             submitButton = $("#submit"),
-            outputName = $("#output #name"),
-            outputEmail = $("#output #email"),
-            outputCurrentAddress = $("#output #currentAddress"),
-            outputPermanentAddress = $("#output #permanentAddress");
+            nameOutput = $("#output #name"),
+            emailOutput = $("#output #email"),
+            currentAddressOutput = $("#output #currentAddress"),
+            permanentAddressOutput = $("#output #permanentAddress");
 
     public TextBoxPage openPage() {
         open("/text-box");
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        deleteBanners();
 
         return this;
+    }
+
+    public void deleteBanners() {
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
     }
 
     public TextBoxPage setUserName(String value) {
@@ -39,13 +43,13 @@ public class TextBoxPage {
     }
 
     public TextBoxPage setCurrentAddress(String value) {
-        currentAddressTextArea.setValue(value);
+        currentAddressInput.setValue(value);
 
         return this;
     }
 
     public TextBoxPage setPermanentAddress(String value) {
-        permanentAddressTextArea.setValue(value);
+        permanentAddressInput.setValue(value);
 
         return this;
     }
@@ -55,31 +59,26 @@ public class TextBoxPage {
     }
 
     public TextBoxPage checkResultName(String value) {
-        outputName.shouldHave(text(value));
+        nameOutput.shouldHave(text(value));
 
         return this;
     }
-
 
     public TextBoxPage checkResultEmail(String value) {
-        outputEmail.shouldHave(text(value));
+        emailOutput.shouldHave(text(value));
 
         return this;
     }
-
 
     public TextBoxPage checkResultCurrentAddress(String value) {
-        outputCurrentAddress.shouldHave(text(value));
+        currentAddressOutput.shouldHave(text(value));
 
         return this;
     }
-
 
     public TextBoxPage checkResultPermanentAddress(String value) {
-        outputPermanentAddress.shouldHave(text(value));
+        permanentAddressOutput.shouldHave(text(value));
 
         return this;
     }
-
-
 }

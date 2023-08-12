@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class RegistrationPageObjectsTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
-    TableResultComponent tableResult = new TableResultComponent();
+    TableResultComponent tableResultComponent = new TableResultComponent();
 
     @Test
     void successRegistrationFullTest() {
@@ -26,7 +26,7 @@ public class RegistrationPageObjectsTests extends TestBase {
                 .setCity("Delhi")
                 .clickSubmit();
 
-        tableResult
+        tableResultComponent
                 .checkResult("Ilana Qa")
                 .checkResult("ilana.qa@proton.me")
                 .checkResult("Female")
@@ -50,7 +50,7 @@ public class RegistrationPageObjectsTests extends TestBase {
                 .setUserNumber("1234567890")
                 .clickSubmit();
 
-        tableResult
+        tableResultComponent
                 .isModalDialogVisible()
                 .checkResultTitle("Thanks for submitting the form")
                 .checkResult("Ilana Qa")

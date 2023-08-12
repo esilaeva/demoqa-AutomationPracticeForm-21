@@ -4,11 +4,11 @@ import com.demoqa.pages.RegistrationPage;
 import com.demoqa.pages.components.TableResultComponent;
 import org.junit.jupiter.api.Test;
 
-import static com.demoqa.utils.testdata.Testdata.*;
+import static com.demoqa.utils.Testdata.*;
 
 public class RegistrationPageObjectsWithFakerTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
-    TableResultComponent tableResult = new TableResultComponent();
+    TableResultComponent tableResultComponent = new TableResultComponent();
 
     @Test
     void successRegistrationFullTest() {
@@ -18,9 +18,9 @@ public class RegistrationPageObjectsWithFakerTests extends TestBase {
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
-                .setGender(gender)
+                .setGender(userGender)
                 .setUserNumber(userNumber)
-                .setBirthDate(day, month, year)
+                .setBirthDate(birthday[0], birthday[1], birthday[2])
                 .setSubject(subject)
                 .setHobbie(hobby)
                 .uploadPicture(fileName)
@@ -29,17 +29,16 @@ public class RegistrationPageObjectsWithFakerTests extends TestBase {
                 .setCity(city)
                 .clickSubmit();
 
-        tableResult
+        tableResultComponent
                 .checkResult(firstName + " " + lastName)
                 .checkResult(userEmail)
-                .checkResult(gender)
+                .checkResult(userGender)
                 .checkResult(userNumber)
-                .checkResult(birthday)
+                .checkResult(birthday[0] + " " + birthday[1] + "," + birthday[2])
                 .checkResult(subject)
                 .checkResult(hobby)
                 .checkResult(fileName)
                 .checkResult(streetAddress)
                 .checkResult(state + " " + city);
     }
-
 }

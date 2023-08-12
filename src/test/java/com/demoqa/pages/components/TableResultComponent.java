@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class TableResultComponent {
-    SelenideElement
+    private SelenideElement
             tableResult = $(".table-responsive"),
             title = $("#example-modal-sizes-title-lg"),
             modalDialog = $(".modal-dialog");
