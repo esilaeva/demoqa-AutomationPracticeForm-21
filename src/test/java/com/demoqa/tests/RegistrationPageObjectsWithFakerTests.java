@@ -13,7 +13,6 @@ public class RegistrationPageObjectsWithFakerTests extends TestBase {
 
     @Test
     void successRegistrationFullTest() {
-
         registrationPage
                 .openPage()
                 .setFirstName(firstName)
